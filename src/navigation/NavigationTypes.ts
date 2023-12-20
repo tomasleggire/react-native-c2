@@ -1,5 +1,6 @@
 export type RootStackParamList = {
   Account: undefined;
-  Pokedex: undefined;
+  Pokedexx: undefined;
   Favorite: undefined;
+  Pokemon: undefined;
 };
