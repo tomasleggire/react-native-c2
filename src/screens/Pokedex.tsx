@@ -1,16 +1,38 @@
 import React, { useEffect, useState } from "react";
 import { Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { getPokemonsApi } from "../api/pokemons";
+import { getPokemonsApi, getPokemonDetailsByUrlApi } from "../api/pokemons";
 
 export default function Pokedex() {
-  const [pokemons, setPokemons] = useState([]);
+  const [pokemons, setPokemons] = useState<any>([]);
 
   useEffect(() => {
-    getPokemonsApi()
-      .then((res) => console.log("res", res))
-      .catch((e) => console.log("err", e));
+    (async () => {
+      await loadPokemons();
+    })();
   }, []);
+
+  const loadPokemons = async () => {
+    try {
+      const response = await getPokemonsApi();
+
+      const pokemonsArray: any = [];
+      for await (const pokemon of response.results) {
+        const pokemonDetails = await getPokemonDetailsByUrlApi(pokemon.url);
+        pokemonsArray.push({
+          id: pokemonDetails.id,
+          name: pokemonDetails.name,
+          type: pokemonDetails.types[0].type.name,
+          order: pokemonDetails.order,
+          image: pokemonDetails.sprites.other["official-artwork"].front_default,
+        });
+      }
+
+      setPokemons([...pokemons, ...pokemonsArray]);
+    } catch (error) {
+      throw error;
+    }
+  };
 
   return (
     <SafeAreaView>
