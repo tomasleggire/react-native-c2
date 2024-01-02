@@ -4,7 +4,7 @@ import { RootStackParamList } from "./NavigationTypes";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import Account from "../screens/Account";
-import Pokedex from "../screens/Pokedex";
+//import Pokedex from "../screens/Pokedex";
 import Favorite from "../screens/Favorite";
 import PokedexNavigation from "./PokedexNavigation";
 
