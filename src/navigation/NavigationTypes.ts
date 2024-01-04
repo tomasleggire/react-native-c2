@@ -4,3 +4,10 @@ export type RootStackParamList = {
   Favorite: undefined;
   Pokemon: undefined;
 };
+
+export type PokedexStackParamList = {
+  Pokedex: undefined;
+  Pokemon: {
+    id: string;
+  };
+};
