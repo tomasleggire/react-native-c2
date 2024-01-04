@@ -6,6 +6,8 @@ import { PokemonType } from "../utils/PokemonTypes";
 
 export default function Pokedex() {
   const [pokemons, setPokemons] = useState<PokemonType[]>([]);
+  const [nextUrl, setNextUrl] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     (async () => {
@@ -15,7 +17,9 @@ export default function Pokedex() {
 
   const loadPokemons = async () => {
     try {
-      const response = await getPokemonsApi();
+      setIsLoading(true);
+      const response = await getPokemonsApi(nextUrl);
+      setNextUrl(response.next);
 
       const pokemonsArray: PokemonType[] = [];
       for await (const pokemon of response.results) {
@@ -29,15 +33,22 @@ export default function Pokedex() {
         });
       }
 
-      setPokemons([...pokemons, ...pokemonsArray]); //Antes estaba el ...pokemons
+      setPokemons([...pokemons, ...pokemonsArray]);
     } catch (error) {
       throw error;
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <SafeAreaView>
-      <PokemonList pokemons={pokemons} />
+      <PokemonList
+        pokemons={pokemons}
+        loadPokemons={loadPokemons}
+        isNext={nextUrl}
+        isLoading={isLoading}
+      />
     </SafeAreaView>
   );
 }
