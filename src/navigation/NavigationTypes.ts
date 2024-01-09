@@ -10,6 +10,6 @@ export type RootStackParamList = {
 export type PokedexStackParamList = {
   Pokedex: undefined;
   Pokemon: {
-    pokemon: PokemonType;
+    id: string;
   };
 };

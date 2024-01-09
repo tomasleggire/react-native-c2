@@ -1,20 +1,41 @@
+import React, { useState, useEffect } from "react";
 import { Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import React from "react";
+import { getPokemonDetailsApi } from "../api/pokemons";
 
 interface Props {
-  //navigation: any;
+  navigation: any;
   route: any;
 }
 
 export default function Pokemon(props: Props) {
-  const { route } = props;
-  const { pokemon } = route.params;
-  console.log(route.params);
+  const [pokemon, setPokemon] = useState<any>(null);
+
+  const {
+    navigation,
+    route: { params },
+  } = props;
+
+  console.log(params.id);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await getPokemonDetailsApi(params.id);
+        console.log(pokemon);
+        setPokemon(response);
+      } catch (error) {
+        navigation.goBack();
+      }
+    })();
+  }, [params]);
+
+  if (!pokemon) return null;
 
   return (
     <SafeAreaView>
-      <Text>Estamos en el pokemon {pokemon.name}</Text>
+      <Text>Estamos en el pokemon</Text>
+      <Text>{pokemon.name}</Text>
     </SafeAreaView>
   );
 }
