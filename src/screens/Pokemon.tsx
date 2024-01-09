@@ -3,17 +3,18 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import React from "react";
 
 interface Props {
-  navigation: any;
+  //navigation: any;
   route: any;
 }
 
 export default function Pokemon(props: Props) {
-  const { navigation, route } = props;
-  console.log(route);
+  const { route } = props;
+  const { pokemon } = route.params;
+  console.log(route.params);
 
   return (
     <SafeAreaView>
-      <Text>Estamos en un pokemon</Text>
+      <Text>Estamos en el pokemon {pokemon.name}</Text>
     </SafeAreaView>
   );
 }

@@ -1,3 +1,5 @@
+import { PokemonType } from "../utils/PokemonTypes";
+
 export type RootStackParamList = {
   Account: undefined;
   Pokedexx: undefined;
@@ -8,6 +10,6 @@ export type RootStackParamList = {
 export type PokedexStackParamList = {
   Pokedex: undefined;
   Pokemon: {
-    id: string;
+    pokemon: PokemonType;
   };
 };
