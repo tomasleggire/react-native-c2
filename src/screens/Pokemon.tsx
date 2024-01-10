@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import Header from "../components/Pokemon/Header";
+import { ScrollView, Text } from "react-native";
+//import { SafeAreaView } from "react-native-safe-area-context";
 import { getPokemonDetailsApi } from "../api/pokemons";
 
 interface Props {
@@ -33,9 +34,13 @@ export default function Pokemon(props: Props) {
   if (!pokemon) return null;
 
   return (
-    <SafeAreaView>
-      <Text>Estamos en el pokemon</Text>
-      <Text>{pokemon.name}</Text>
-    </SafeAreaView>
+    <ScrollView>
+      <Header
+        name={pokemon.name}
+        order={pokemon.order}
+        image={pokemon.sprites.other["official-artwork"].front_default}
+        type={pokemon.types[0].type.name}
+      />
+    </ScrollView>
   );
 }
