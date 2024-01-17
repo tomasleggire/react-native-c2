@@ -28,7 +28,7 @@ export default function Type(props: Props) {
 
 const styles = StyleSheet.create({
   content: {
-    marginTop: 20,
+    marginTop: 10,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",

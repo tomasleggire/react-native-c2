@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Header from "../components/Pokemon/Header";
 import Type from "../components/Pokemon/Type";
+import Stats from "../components/Pokemon/Stats";
 import { ScrollView, Text } from "react-native";
 //import { SafeAreaView } from "react-native-safe-area-context";
 import { getPokemonDetailsApi } from "../api/pokemons";
@@ -43,6 +44,7 @@ export default function Pokemon(props: Props) {
         type={pokemon.types[0].type.name}
       />
       <Type types={pokemon.types} />
+      <Stats stats={pokemon.stats} />
     </ScrollView>
   );
 }
