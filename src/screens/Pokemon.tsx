@@ -4,7 +4,6 @@ import Type from "../components/Pokemon/Type";
 import Stats from "../components/Pokemon/Stats";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { ScrollView } from "react-native";
-//import { SafeAreaView } from "react-native-safe-area-context";
 import { getPokemonDetailsApi } from "../api/pokemons";
 
 interface Props {
