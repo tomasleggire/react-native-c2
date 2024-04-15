@@ -1,30 +1,27 @@
-import {
-  StyleSheet,
-  View,
-  Text,
-  TextInput,
-  Button,
-  ToastAndroid,
-} from "react-native";
+import { StyleSheet, View, Text, TextInput, Button } from "react-native";
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { user, userDetails } from "../../utils/userDB";
+import useAuth from "../../hooks/useAuth";
 
 export default function LoginForm() {
   const [error, setError] = useState("");
+  const { login } = useAuth();
+
+  console.log(useAuth());
 
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: Yup.object(validationSchema()),
     validateOnChange: false,
     onSubmit: (formValue, { resetForm }) => {
+      setError("");
       const { username, password } = formValue;
       if (username != user.username || password != user.password) {
         setError("El usuario o contraseña son invalidos");
       } else {
-        setError("");
-        console.log(userDetails);
+        login(userDetails);
         resetForm();
       }
     },
