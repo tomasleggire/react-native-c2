@@ -1,21 +1,28 @@
 import React, { useState, createContext } from "react";
+import type { userDetailsType } from "../utils/userDB";
 
-export const AuthContext = createContext({
-  user: undefined,
-  login: (userDetails: any) => {},
+type ProviderProps = {
+  user: userDetailsType | null;
+  login: (userDetails: userDetailsType) => void;
+  logout: () => void;
+};
+
+export const AuthContext = createContext<ProviderProps>({
+  user: null,
+  login: (userDetails: userDetailsType) => {},
   logout: () => {},
 });
 
 export function AuthProvider(props: any) {
   const { children } = props;
-  const [user, setUser] = useState(undefined);
+  const [user, setUser] = useState<userDetailsType | null>(null);
 
-  const login = (userDetails: any) => {
+  const login = (userDetails: userDetailsType) => {
     setUser(userDetails);
   };
 
   const logout = () => {
-    setUser(undefined);
+    setUser(null);
   };
 
   const valueContext = {
