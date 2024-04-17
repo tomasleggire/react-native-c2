@@ -5,6 +5,8 @@ import Stats from "../components/Pokemon/Stats";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { ScrollView } from "react-native";
 import { getPokemonDetailsApi } from "../api/pokemons";
+import Favorite from "../components/Pokemon/Favorite";
+import useAuth from "../hooks/useAuth";
 
 interface Props {
   navigation: any;
@@ -13,6 +15,7 @@ interface Props {
 
 export default function Pokemon(props: Props) {
   const [pokemon, setPokemon] = useState<any>(null);
+  const { user } = useAuth();
 
   const {
     navigation,
@@ -21,7 +24,7 @@ export default function Pokemon(props: Props) {
 
   useEffect(() => {
     navigation.setOptions({
-      headerRight: () => null,
+      headerRight: () => user && <Favorite id={pokemon?.id} />,
       headerLeft: () => (
         <Icon
           name="arrow-left"
@@ -31,7 +34,7 @@ export default function Pokemon(props: Props) {
         />
       ),
     });
-  }, [navigation, params]);
+  }, [navigation, params, pokemon]);
 
   useEffect(() => {
     (async () => {
