@@ -8,11 +8,21 @@ interface Props {
 
 export default function Favorite(props: Props) {
   const [isFavorite, setIsFavorite] = useState<boolean | undefined>(undefined);
+  const [reloadCheckFavorite, setReloadCheckFavorite] = useState(false);
 
   const { id } = props;
 
+  const onReloadCheckFavorite = () => {
+    setReloadCheckFavorite((prev) => !prev);
+  };
+
   const addFavorite = async () => {
-    await addPokemonFavorite(id);
+    try {
+      await addPokemonFavorite(id);
+      onReloadCheckFavorite();
+    } catch (error) {
+      throw error;
+    }
   };
 
   const removeFavorite = () => {
@@ -28,7 +38,7 @@ export default function Favorite(props: Props) {
         setIsFavorite(false);
       }
     })();
-  }, [id]);
+  }, [id, reloadCheckFavorite]);
 
   return (
     <Icon
