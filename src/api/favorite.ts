@@ -20,3 +20,12 @@ export async function addPokemonFavorite(id: number) {
     throw error;
   }
 }
+
+export async function isPokemonFavorite(id: number) {
+  try {
+    const response = await getPokemonsFavorite();
+    return includes(response, id);
+  } catch (error) {
+    throw error;
+  }
+}

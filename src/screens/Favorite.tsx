@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Text, Button } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { getPokemonsFavorite } from "../api/favorite";
