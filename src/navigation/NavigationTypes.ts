@@ -13,3 +13,7 @@ export type PokedexStackParamList = {
     id: string;
   };
 };
+
+export type FavotireStackParamList = {
+  Favirute: undefined;
+};

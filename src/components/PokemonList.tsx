@@ -6,8 +6,8 @@ import PokemonCard from "./PokemonCard";
 interface Props {
   pokemons: PokemonType[];
   loadPokemons: () => void;
-  isNext: string | null;
-  isLoading: boolean;
+  isNext?: string | null;
+  isLoading?: boolean;
 }
 
 export default function PokemonList(props: Props) {

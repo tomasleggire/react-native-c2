@@ -35,6 +35,11 @@ export default function Favorite() {
   return !user ? (
     <Text>Usuario no logueado</Text>
   ) : (
-    <PokemonList pokemons={favoritePokemons} />
+    <PokemonList
+      pokemons={favoritePokemons}
+      loadPokemons={function (): void {
+        throw new Error("Function not implemented.");
+      }}
+    />
   );
 }
