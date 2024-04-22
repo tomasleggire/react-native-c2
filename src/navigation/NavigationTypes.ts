@@ -15,5 +15,9 @@ export type PokedexStackParamList = {
 };
 
 export type FavotireStackParamList = {
-  Favirute: undefined;
+  Favorite: undefined;
+};
+
+export type AccountStackParamList = {
+  Account: undefined;
 };

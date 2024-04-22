@@ -3,9 +3,9 @@ import { Image } from "react-native";
 import { RootStackParamList } from "./NavigationTypes";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import Account from "../screens/Account";
 import PokedexNavigation from "./PokedexNavigation";
 import FavoriteNavigation from "./FavoriteNavigation";
+import AccountNavigation from "./AccountNavigation";
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
 
@@ -33,10 +33,9 @@ export default function Navigation() {
       />
       <Tab.Screen
         name="Account"
-        component={Account}
+        component={AccountNavigation}
         options={{
-          tabBarLabel: "Mi cuenta",
-          headerTitle: "Mi cuenta",
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Icon name="user" color={color} size={size} />
           ),

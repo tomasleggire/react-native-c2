@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { getPokemonsFavorite } from "../api/favorite";
 import useAuth from "../hooks/useAuth";
 import { PokemonType } from "../utils/PokemonTypes";
 import { getPokemonDetailsApi } from "../api/pokemons";
 import PokemonList from "../components/PokemonList";
+import NoLogged from "../components/NoLogged";
 
 export default function Favorite() {
   const [favoritePokemons, setFavoritesPokemons] = useState<PokemonType[]>([]);
@@ -33,7 +32,7 @@ export default function Favorite() {
   }, [user, favoritePokemons]);
 
   return !user ? (
-    <Text>Usuario no logueado</Text>
+    <NoLogged />
   ) : (
     <PokemonList
       pokemons={favoritePokemons}
